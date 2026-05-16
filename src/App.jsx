@@ -57,7 +57,9 @@ export default function App() {
     try {
       const rawText = await callGemini(parts, systemInstruction);
       const parsed = parseJSONLoose(rawText);
-      if (!parsed || !parsed.flirt) throw new Error('Invalid response format');
+      if (!parsed || !['flirt', 'normal', 'cool'].every(k => k in parsed)) {
+        throw new Error('Invalid response format');
+      }
 
       setReplies(parsed);
       setStatus('idle');
@@ -69,15 +71,18 @@ export default function App() {
     }
   }, [msg, intent, length, image, persona]);
 
+  // Always keep a ref to the latest generate function so the length effect below
+  // can call it without needing generate in its own dep array (which would require
+  // adding all of generate's deps and risk infinite loops).
+  const generateRef = useRef(generate);
+  useEffect(() => { generateRef.current = generate; }); // no deps: refresh every render
+
   // Auto-regenerate when length changes, but only if we already have results
   const isFirstRender = useRef(true);
   useEffect(() => {
     if (isFirstRender.current) { isFirstRender.current = false; return; }
-    if (replies) {
-      generate({ prior: replies });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [length]); // intentionally only watch length, not generate (avoids infinite loop)
+    if (replies) generateRef.current({ prior: replies });
+  }, [length]); // intentional: only fire on length change; ref keeps generate fresh
 
   const handleCopy = useCallback(async (text) => {
     try {
