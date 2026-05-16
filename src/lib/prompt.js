@@ -5,12 +5,13 @@ export function lengthBrief(value) {
 }
 
 export function buildPrompt(input) {
-  const { msg, intent, length, refineHint, prior } = input;
+  const { msg, intent, length, language = 'zh', refineHint, prior } = input;
   // NOTE: persona is handled as a Gemini systemInstruction, NOT included in the prompt body
-  let p = `你是一个擅长聊天回复的中文助手。请根据下面信息，给出三种不同语气的回复，让用户在感情场景里有得选。\n\n`;
+  let p = `你是一个擅长聊天回复的助手。请根据下面信息，给出三种不同语气的回复，让用户在感情场景里有得选。\n\n`;
   p += `【对方刚说的】\n${msg || '（用户未填消息，请基于"我想表达"自由发挥一条开场或回应）'}\n\n`;
   if (intent) p += `【我想表达】${intent}\n`;
   p += `【回复长度】${lengthBrief(length)}\n`;
+  p += `【回复语言】${language === 'en' ? 'English only — write all three replies in English, no Chinese characters' : '中文'}\n`;
   p += `\n请生成三种语气：\n`;
   p += `1) flirt（💫 撩一点）：有点小心思、轻度暧昧、自信但不油腻\n`;
   p += `2) normal（😊 正常）：真诚自然、像朋友聊天、不刻意\n`;

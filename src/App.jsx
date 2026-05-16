@@ -21,6 +21,7 @@ export default function App() {
   const [intent, setIntent] = useState('');
   const [persona, setPersona] = useLocalStorage('persona', '');
   const [length, setLength] = useState('medium');
+  const [language, setLanguage] = useState('zh'); // 'zh' | 'en'
   const [image, setImage] = useState(null); // {dataUrl, mimeType, base64} | null
   const [replies, setReplies] = useState(null); // {flirt, normal, cool} | null
   const [refineHistory, setRefineHistory] = useState([]);
@@ -45,7 +46,7 @@ export default function App() {
     const t0 = Date.now();
 
     // 2. Build parts
-    const promptText = buildPrompt({ msg, intent, length, refineHint, prior });
+    const promptText = buildPrompt({ msg, intent, length, language, refineHint, prior });
     const parts = [{ text: promptText }];
     if (image) {
       parts.push({ inline_data: { mime_type: image.mimeType, data: image.base64 } });
@@ -71,7 +72,7 @@ export default function App() {
     } catch {
       setStatus('error');
     }
-  }, [msg, intent, length, image, persona]);
+  }, [msg, intent, length, language, image, persona]);
 
   // Always keep a ref to the latest generate function so the length effect below
   // can call it without needing generate in its own dep array (which would require
@@ -79,12 +80,12 @@ export default function App() {
   const generateRef = useRef(generate);
   useEffect(() => { generateRef.current = generate; }); // no deps: refresh every render
 
-  // Auto-regenerate when length changes, but only if we already have results
+  // Auto-regenerate when length or language changes, but only if we already have results
   const isFirstRender = useRef(true);
   useEffect(() => {
     if (isFirstRender.current) { isFirstRender.current = false; return; }
     if (replies) generateRef.current({ prior: replies });
-  }, [length]); // intentional: only fire on length change; ref keeps generate fresh
+  }, [length, language]); // intentional: only fire on these changes; ref keeps generate fresh
 
   const handleCopy = useCallback(async (text) => {
     try {
@@ -113,6 +114,7 @@ export default function App() {
         image={image} onImageChange={setImage}
         persona={persona} onPersonaChange={setPersona}
         length={length} onLengthChange={setLength}
+        language={language} onLanguageChange={setLanguage}
         loading={status === 'loading'}
         onGenerate={() => generate()}
         hasReplies={!!replies}

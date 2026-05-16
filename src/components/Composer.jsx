@@ -13,7 +13,7 @@ const StarIcon = () => (
     strokeWidth="1.8"
     strokeLinecap="round"
     strokeLinejoin="round"
-    style={{ color: '#a05bd6', pointerEvents: 'none' }}
+    style={{ color: '#c08792', pointerEvents: 'none' }}
   >
     <path d="M12 2l2.5 6 6.5.5-5 4.5 1.5 6.5L12 16l-5.5 3.5L8 13 3 8.5 9.5 8z" fill="none" stroke="currentColor" />
   </svg>
@@ -21,9 +21,9 @@ const StarIcon = () => (
 
 const textareaBaseStyle = {
   width: '100%',
-  border: '1px solid #ece6f3',
+  border: '1px solid #efe7e9',
   borderRadius: '16px',
-  backgroundColor: '#fdfbff',
+  backgroundColor: '#fdfbfb',
   padding: '12px 14px',
   font: 'inherit',
   color: '#1d1726',
@@ -38,9 +38,9 @@ const textareaBaseStyle = {
 
 const inputBaseStyle = {
   width: '100%',
-  border: '1px solid #ece6f3',
+  border: '1px solid #efe7e9',
   borderRadius: '16px',
-  backgroundColor: '#fdfbff',
+  backgroundColor: '#fdfbfb',
   padding: '12px 14px 12px 40px',
   font: 'inherit',
   color: '#1d1726',
@@ -51,8 +51,8 @@ const inputBaseStyle = {
 };
 
 const focusStyle = {
-  borderColor: '#d6abe9',
-  boxShadow: '0 0 0 4px rgba(180,108,255,.1)',
+  borderColor: '#d9b8c0',
+  boxShadow: '0 0 0 4px rgba(192,135,146,.12)',
 };
 
 export default function Composer({
@@ -66,6 +66,8 @@ export default function Composer({
   onPersonaChange,
   length,
   onLengthChange,
+  language,
+  onLanguageChange,
   loading,
   onGenerate,
   hasReplies,
@@ -94,9 +96,9 @@ export default function Composer({
       id="composer"
       style={{
         background: '#ffffff',
-        border: '1px solid #ece6f3',
+        border: '1px solid #efe7e9',
         borderRadius: '22px',
-        boxShadow: '0 2px 8px rgba(74,40,120,.06), 0 1px 2px rgba(74,40,120,.04)',
+        boxShadow: '0 2px 8px rgba(80,50,60,.06), 0 1px 2px rgba(80,50,60,.04)',
         padding: '18px',
         display: 'grid',
         gap: '14px',
@@ -207,6 +209,8 @@ export default function Composer({
         onPersonaChange={onPersonaChange}
         length={length}
         onLengthChange={onLengthChange}
+        language={language}
+        onLanguageChange={onLanguageChange}
       />
 
       {/* Row 4 — GenerateButton */}

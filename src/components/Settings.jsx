@@ -37,11 +37,12 @@ const ChevronIcon = ({ open }) => (
   </svg>
 );
 
-function getPillText(persona, length) {
+function getPillText(persona, length, language) {
   const lengthLabel = length === 'short' ? '短' : length === 'long' ? '长' : '中';
   const parts = [];
   if (persona && persona.trim()) parts.push('背景');
   parts.push(lengthLabel);
+  if (language === 'en') parts.push('EN');
   return parts.join(' · ');
 }
 
@@ -101,10 +102,10 @@ function FocusSelect({ style, ...props }) {
   );
 }
 
-export default function Settings({ persona, onPersonaChange, length, onLengthChange }) {
+export default function Settings({ persona, onPersonaChange, length, onLengthChange, language, onLanguageChange }) {
   const [open, setOpen] = useState(false);
 
-  const pillText = getPillText(persona, length);
+  const pillText = getPillText(persona, length, language);
 
   return (
     <details
@@ -180,7 +181,7 @@ export default function Settings({ persona, onPersonaChange, length, onLengthCha
 
         {/* Column 2: Length */}
         <div>
-          <label style={fieldLabelStyle}>回复长度</label>
+          <label style={fieldLabelStyle}>长度</label>
           <div style={{ position: 'relative' }}>
             <FocusSelect
               value={length}
@@ -211,6 +212,41 @@ export default function Settings({ persona, onPersonaChange, length, onLengthCha
                 pointerEvents: 'none',
               }}
             />
+          </div>
+        </div>
+        {/* Column 3: Language toggle */}
+        <div>
+          <label style={fieldLabelStyle}>语言</label>
+          <div
+            style={{
+              display: 'flex',
+              border: '1px solid #efe7e9',
+              borderRadius: '16px',
+              overflow: 'hidden',
+              height: '44px',
+            }}
+          >
+            {['zh', 'en'].map((lang) => (
+              <button
+                key={lang}
+                type="button"
+                onClick={() => onLanguageChange(lang)}
+                style={{
+                  flex: 1,
+                  border: 'none',
+                  background: language === lang ? 'var(--grad-primary)' : 'transparent',
+                  color: language === lang ? '#ffffff' : '#4a3f5b',
+                  cursor: 'pointer',
+                  fontSize: '13px',
+                  fontWeight: language === lang ? 600 : 400,
+                  fontFamily: 'inherit',
+                  transition: 'background .15s ease, color .15s ease',
+                  letterSpacing: lang === 'en' ? '0.02em' : 0,
+                }}
+              >
+                {lang === 'zh' ? '中文' : 'EN'}
+              </button>
+            ))}
           </div>
         </div>
       </div>
