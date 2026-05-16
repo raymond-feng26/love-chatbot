@@ -1,4 +1,7 @@
+import { useState } from 'react';
+
 export default function GenerateButton({ loading, label, onClick, disabled }) {
+  const [focused, setFocused] = useState(false);
   return (
     <button
       onClick={onClick}
@@ -21,7 +24,15 @@ export default function GenerateButton({ loading, label, onClick, disabled }) {
               boxShadow: 'none',
             }
           : {}),
+        ...(focused && !disabled && !loading
+          ? {
+              outline: '2px solid #d6abe9',
+              outlineOffset: '2px',
+            }
+          : { outline: 'none' }),
       }}
+      onFocus={() => setFocused(true)}
+      onBlur={() => setFocused(false)}
       onMouseEnter={(e) => {
         if (!disabled && !loading) {
           e.currentTarget.style.transform = 'translateY(-1px)';

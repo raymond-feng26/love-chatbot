@@ -1,6 +1,9 @@
 export default function Toast({ message, visible }) {
   return (
     <div
+      role="status"
+      aria-live="polite"
+      aria-atomic="true"
       className="fixed z-50 text-white text-[13px] rounded-full pointer-events-none"
       style={{
         bottom: '24px',
