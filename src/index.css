@@ -4,15 +4,15 @@
 
 @layer base {
   :root {
-    --grad-primary: linear-gradient(135deg, #b46cff 0%, #f55c93 100%);
-    --grad-primary-soft: linear-gradient(135deg, #f4e7fa 0%, #ffe1ec 100%);
+    --grad-primary: linear-gradient(135deg, #c89aa3 0%, #c97a86 100%);
+    --grad-primary-soft: linear-gradient(135deg, #f5ebed 0%, #f5e1e4 100%);
   }
 
   body {
-    background-color: #fdfcff;
+    background-color: #fdfbfb;
     background-image:
-      radial-gradient(900px 500px at 85% -10%, #fbe5f2 0%, transparent 60%),
-      radial-gradient(800px 500px at -10% 10%, #efe1fb 0%, transparent 55%);
+      radial-gradient(900px 500px at 85% -10%, #f5e3e6 0%, transparent 60%),
+      radial-gradient(800px 500px at -10% 10%, #ede3f0 0%, transparent 55%);
     min-height: 100vh;
     font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC",
       "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
@@ -39,12 +39,12 @@
   }
 
   .shadow-generate {
-    box-shadow: 0 10px 24px -8px rgba(220, 80, 170, 0.55), 0 2px 6px rgba(160, 80, 200, 0.25);
+    box-shadow: 0 10px 24px -8px rgba(180, 100, 120, 0.50), 0 2px 6px rgba(140, 80, 100, 0.22);
   }
 
   .ring-focus {
-    border-color: #d6abe9;
-    box-shadow: 0 0 0 4px rgba(180, 108, 255, 0.1);
+    border-color: #d9b8c0;
+    box-shadow: 0 0 0 4px rgba(192, 135, 146, 0.12);
   }
 
   .settings-body-grid {

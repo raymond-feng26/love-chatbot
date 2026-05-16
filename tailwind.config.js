@@ -11,31 +11,31 @@ export default {
     },
     extend: {
       colors: {
-        bg: '#fdfcff',
+        bg: '#fdfbfb',
         surface: '#ffffff',
         ink: '#1d1726',
         'ink-2': '#4a3f5b',
         'ink-3': '#8a7e9a',
-        line: '#ece6f3',
-        'line-2': '#f6f1fb',
-        // Purple scale
-        'p-50': '#fbf5fd',
-        'p-100': '#f4e7fa',
-        'p-200': '#e9d2f4',
-        'p-300': '#d6abe9',
-        'p-500': '#a05bd6',
-        'p-600': '#8a3fc4',
-        'p-700': '#6f2da5',
+        line: '#efe7e9',
+        'line-2': '#f6eef0',
+        // Pink scale
+        'p-50': '#faf6f7',
+        'p-100': '#f3eaec',
+        'p-200': '#ecd9de',
+        'p-300': '#d9b8c0',
+        'p-500': '#c08792',
+        'p-600': '#a86b78',
+        'p-700': '#855260',
         // Rose scale
-        'r-50': '#fff3f7',
-        'r-100': '#ffe1ec',
-        'r-300': '#ffa3c3',
-        'r-500': '#f55c93',
-        'r-600': '#e0407a',
-        // Blue scale
-        'b-100': '#e4ecff',
-        'b-300': '#a8b9ee',
-        'b-500': '#6f7fcc',
+        'r-50': '#fbf3f4',
+        'r-100': '#f5e1e4',
+        'r-300': '#e5acb4',
+        'r-500': '#c97a86',
+        'r-600': '#b06270',
+        // Muted blue scale
+        'b-100': '#e7e6ef',
+        'b-300': '#b6b3c6',
+        'b-500': '#8a8aa3',
       },
       fontFamily: {
         sans: [
@@ -50,9 +50,9 @@ export default {
         mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
       },
       boxShadow: {
-        '1': '0 1px 2px rgba(74,40,120,.04), 0 2px 8px rgba(74,40,120,.05)',
-        '2': '0 4px 14px rgba(120,60,180,.08), 0 1px 3px rgba(74,40,120,.04)',
-        '3': '0 14px 40px -10px rgba(140,60,200,.22), 0 4px 12px rgba(120,60,180,.08)',
+        '1': '0 1px 2px rgba(80,50,60,.04), 0 2px 8px rgba(80,50,60,.05)',
+        '2': '0 4px 14px rgba(140,90,100,.08), 0 1px 3px rgba(80,50,60,.04)',
+        '3': '0 14px 40px -10px rgba(160,100,115,.20), 0 4px 12px rgba(140,90,100,.08)',
       },
       keyframes: {
         'loading-dot': {

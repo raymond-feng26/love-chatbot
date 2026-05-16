@@ -35,7 +35,7 @@ export default function App() {
     if (!msg.trim() && !intent.trim()) {
       if (msgRef.current) {
         msgRef.current.focus();
-        msgRef.current.style.borderColor = '#f55c93'; // r-500
+        msgRef.current.style.borderColor = '#c97a86'; // r-500
         setTimeout(() => { if (msgRef.current) msgRef.current.style.borderColor = ''; }, 1200);
       }
       return;
@@ -51,8 +51,10 @@ export default function App() {
       parts.push({ inline_data: { mime_type: image.mimeType, data: image.base64 } });
     }
 
-    // 3. systemInstruction from persona
-    const systemInstruction = persona.trim() || undefined;
+    // 3. systemInstruction from background/persona
+    const systemInstruction = persona.trim()
+      ? `【发消息者的背景与人设】\n${persona.trim()}`
+      : undefined;
 
     try {
       const rawText = await callGemini(parts, systemInstruction);

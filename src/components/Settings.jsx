@@ -40,7 +40,7 @@ const ChevronIcon = ({ open }) => (
 function getPillText(persona, length) {
   const lengthLabel = length === 'short' ? '短' : length === 'long' ? '长' : '中';
   const parts = [];
-  if (persona && persona.trim()) parts.push('人设');
+  if (persona && persona.trim()) parts.push('背景');
   parts.push(lengthLabel);
   return parts.join(' · ');
 }
@@ -55,9 +55,9 @@ const fieldLabelStyle = {
 
 const inputBaseStyle = {
   width: '100%',
-  border: '1px solid #ece6f3',
+  border: '1px solid #efe7e9',
   borderRadius: '16px',
-  backgroundColor: '#fdfbff',
+  backgroundColor: '#fdfbfb',
   padding: '12px 14px',
   font: 'inherit',
   color: '#1d1726',
@@ -75,7 +75,7 @@ function FocusInput({ style, ...props }) {
       style={{
         ...style,
         ...(focused
-          ? { borderColor: '#d6abe9', boxShadow: '0 0 0 4px rgba(180,108,255,.1)' }
+          ? { borderColor: '#d9b8c0', boxShadow: '0 0 0 4px rgba(192,135,146,.12)' }
           : {}),
       }}
       onFocus={() => setFocused(true)}
@@ -92,7 +92,7 @@ function FocusSelect({ style, ...props }) {
       style={{
         ...style,
         ...(focused
-          ? { borderColor: '#d6abe9', boxShadow: '0 0 0 4px rgba(180,108,255,.1)' }
+          ? { borderColor: '#d9b8c0', boxShadow: '0 0 0 4px rgba(192,135,146,.12)' }
           : {}),
       }}
       onFocus={() => setFocused(true)}
@@ -110,9 +110,9 @@ export default function Settings({ persona, onPersonaChange, length, onLengthCha
     <details
       onToggle={(e) => setOpen(e.currentTarget.open)}
       style={{
-        border: '1px solid #ece6f3',
+        border: '1px solid #efe7e9',
         borderRadius: '16px',
-        backgroundColor: '#fdfbff',
+        backgroundColor: '#fdfbfb',
         overflow: 'hidden',
       }}
     >
@@ -136,8 +136,8 @@ export default function Settings({ persona, onPersonaChange, length, onLengthCha
           <span>高级设置</span>
           <span
             style={{
-              backgroundColor: '#f4e7fa',
-              color: '#6f2da5',
+              backgroundColor: '#f3eaec',
+              color: '#855260',
               padding: '2px 8px',
               borderRadius: '9999px',
               fontSize: '11px',
@@ -158,11 +158,11 @@ export default function Settings({ persona, onPersonaChange, length, onLengthCha
         {/* Column 1: Persona */}
         <div>
           <label style={fieldLabelStyle}>
-            人设 / 我是个怎样的人
+            背景 / 人设
             <span
               style={{
                 marginLeft: '6px',
-                color: '#d6abe9',
+                color: '#d9b8c0',
                 fontSize: '11px',
               }}
             >
@@ -173,7 +173,7 @@ export default function Settings({ persona, onPersonaChange, length, onLengthCha
             type="text"
             value={persona}
             onChange={(e) => onPersonaChange(e.target.value)}
-            placeholder="例：理工男 / 慢热 / 不太会聊天，但真诚"
+            placeholder="例：我们是同学，暗恋了一学期 / 理工直男，不太会聊天"
             style={inputBaseStyle}
           />
         </div>
