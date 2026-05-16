@@ -58,4 +58,22 @@
       grid-template-columns: 1fr;
     }
   }
+
+  .composer-row1 {
+    grid-template-columns: 1fr 200px;
+  }
+  @media (max-width: 720px) {
+    .composer-row1 {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .shell {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 28px 22px 80px;
+  }
+  @media (max-width: 720px) {
+    .shell { padding: 18px 14px 64px; }
+  }
 }
