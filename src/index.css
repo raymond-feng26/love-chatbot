@@ -21,6 +21,15 @@
 }
 
 @layer components {
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  @media (max-width: 820px) {
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+
   .bg-grad-primary {
     background: var(--grad-primary);
   }
