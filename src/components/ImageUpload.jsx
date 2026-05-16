@@ -1,23 +1,12 @@
 import { useRef, useState, useEffect } from 'react';
-import { MAX_IMAGE_BYTES, fileToImageData } from '../lib/image';
+import { MAX_IMAGE_BYTES } from '../lib/image';
 
 export default function ImageUpload({ image, onImageChange, onToast }) {
   const [dragging, setDragging] = useState(false);
   const [hovered, setHovered] = useState(false);
   const inputRef = useRef(null);
 
-  async function processFile(file) {
-    if (!file) return;
-    if (!file.type.startsWith('image/')) return;
-    if (file.size > MAX_IMAGE_BYTES) {
-      onToast('图片过大，请压缩后上传');
-      return;
-    }
-    const result = await fileToImageData(file);
-    onImageChange({ ...result, dataUrl: await getDataUrl(file) });
-  }
-
-  // fileToImageData only returns base64+mimeType; we also need dataUrl for preview
+  // Read file as data URL, then extract base64 + mimeType for the image data object
   function getDataUrl(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
