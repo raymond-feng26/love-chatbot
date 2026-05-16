@@ -154,15 +154,7 @@ export default function Settings({ persona, onPersonaChange, length, onLengthCha
       </summary>
 
       {/* Settings body */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 160px',
-          gap: '10px',
-          padding: '4px 14px 14px',
-        }}
-        className="settings-body"
-      >
+      <div className="settings-body-grid">
         {/* Column 1: Persona */}
         <div>
           <label style={fieldLabelStyle}>
@@ -223,14 +215,6 @@ export default function Settings({ persona, onPersonaChange, length, onLengthCha
         </div>
       </div>
 
-      {/* Responsive: stack on mobile */}
-      <style>{`
-        @media (max-width: 720px) {
-          .settings-body {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </details>
   );
 }

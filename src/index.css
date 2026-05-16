@@ -37,4 +37,16 @@
     border-color: #d6abe9;
     box-shadow: 0 0 0 4px rgba(180, 108, 255, 0.1);
   }
+
+  .settings-body-grid {
+    display: grid;
+    grid-template-columns: 1fr 160px;
+    gap: 10px;
+    padding: 4px 14px 14px;
+  }
+  @media (max-width: 720px) {
+    .settings-body-grid {
+      grid-template-columns: 1fr;
+    }
+  }
 }

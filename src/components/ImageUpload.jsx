@@ -23,10 +23,14 @@ export default function ImageUpload({ image, onImageChange, onToast }) {
       onToast('图片过大，请压缩后上传');
       return;
     }
-    const dataUrl = await getDataUrl(file);
-    const comma = dataUrl.indexOf(',');
-    const base64 = comma >= 0 ? dataUrl.slice(comma + 1) : '';
-    onImageChange({ dataUrl, mimeType: file.type || 'image/jpeg', base64 });
+    try {
+      const dataUrl = await getDataUrl(file);
+      const comma = dataUrl.indexOf(',');
+      const base64 = comma >= 0 ? dataUrl.slice(comma + 1) : '';
+      onImageChange({ dataUrl, mimeType: file.type || 'image/jpeg', base64 });
+    } catch {
+      onToast('图片读取失败，请重试');
+    }
   }
 
   function handleFileInputChange(e) {
@@ -65,6 +69,12 @@ export default function ImageUpload({ image, onImageChange, onToast }) {
 
   useEffect(() => {
     function handlePaste(event) {
+      // only process paste when user is focused on a text input/textarea
+      const activeEl = document.activeElement;
+      const isInTextInput = activeEl instanceof HTMLTextAreaElement ||
+                            (activeEl instanceof HTMLInputElement && activeEl.type === 'text');
+      if (!isInTextInput) return;
+
       const items = event.clipboardData?.items;
       if (!items) return;
       for (let i = 0; i < items.length; i++) {
