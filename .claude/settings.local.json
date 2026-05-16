@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(superpowers:brainstorming)",
+      "WebFetch(domain:api.anthropic.com)",
+      "Bash(unzip -l \"Love Chatbot-handoff.zip\")",
+      "Bash(unzip -p \"Love Chatbot-handoff.zip\" \"love-chatbot/README.md\")",
+      "Bash(unzip -p \"Love Chatbot-handoff.zip\" \"love-chatbot/project/Love Chatbot.html\")",
+      "Skill(superpowers:executing-plans)",
+      "Skill(superpowers:subagent-driven-development)",
+      "Bash(git init *)",
+      "Bash(git checkout *)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ]
+  }
+}

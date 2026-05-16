@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --grad-primary: linear-gradient(135deg, #b46cff 0%, #f55c93 100%);
+    --grad-primary-soft: linear-gradient(135deg, #f4e7fa 0%, #ffe1ec 100%);
+  }
+
+  body {
+    background-color: #fdfcff;
+    background-image:
+      radial-gradient(900px 500px at 85% -10%, #fbe5f2 0%, transparent 60%),
+      radial-gradient(800px 500px at -10% 10%, #efe1fb 0%, transparent 55%);
+    min-height: 100vh;
+    font-family: "Noto Sans SC", -apple-system, BlinkMacSystemFont, "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    color: #1d1726;
+  }
+}
+
+@layer components {
+  .bg-grad-primary {
+    background: var(--grad-primary);
+  }
+
+  .bg-grad-primary-soft {
+    background: var(--grad-primary-soft);
+  }
+
+  .shadow-generate {
+    box-shadow: 0 10px 24px -8px rgba(220, 80, 170, 0.55), 0 2px 6px rgba(160, 80, 200, 0.25);
+  }
+
+  .ring-focus {
+    border-color: #d6abe9;
+    box-shadow: 0 0 0 4px rgba(180, 108, 255, 0.1);
+  }
+}
