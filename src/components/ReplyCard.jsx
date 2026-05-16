@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 // Tone color config
 const TONE_COLORS = {
@@ -66,8 +66,13 @@ export default function ReplyCard({ tone, text, loading, error, onCopy, index = 
     }
     setCopied(true);
     if (onCopy) onCopy(text);
-    setTimeout(() => setCopied(false), 1800);
   }
+
+  useEffect(() => {
+    if (!copied) return;
+    const timer = setTimeout(() => setCopied(false), 1800);
+    return () => clearTimeout(timer);
+  }, [copied]);
 
   function fallbackCopy(str) {
     const ta = document.createElement('textarea');

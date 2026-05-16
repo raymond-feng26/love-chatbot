@@ -10,6 +10,7 @@ export default function RefineHistory({ history }) {
         marginBottom: '8px',
       }}
     >
+      {/* history is append-only, so index is a stable key */}
       {history.map((item, i) => (
         <div
           key={i}
